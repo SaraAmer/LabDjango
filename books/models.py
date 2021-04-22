@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime  
+from django.utils import timezone
 import uuid
 # Create your models here.
 class Tag(models.Model):
@@ -20,8 +22,9 @@ class Category(models.Model):
 class ISBN(models.Model):
     isbn_number=models.UUIDField(primary_key=True ,default=uuid.uuid4, editable=False)
     Author_name=models.CharField(max_length=50)
-    Book_title=models.CharField(max_length=50)
-
+    # # Book_title=models.CharField(max_length=50)
+    # created_at = models.DateTimeField(auto_now_add=True)
+  
 
 class Book(models.Model):
     title=models.CharField(max_length=50)

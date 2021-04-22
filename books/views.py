@@ -20,7 +20,21 @@ def destroy(request , id):
 def create(request):
     form = BookForm(request.POST or None)
     if form.is_valid():
-        form.save()
+        author=form.cleaned_data.get('Author')
+        isbn_create=ISBN(Author_name=author)
+        isbn_create.save()
+        book = Book.objects.create(
+            title=form.cleaned_data.get('title'),
+            Description=form.cleaned_data.get('Description'),
+            price=form.cleaned_data.get('price'),
+            Publishment_date=form.cleaned_data.get('Publishment_date'),
+            Author=form.cleaned_data.get('Author'),
+            isbn_number=isbn_create,
+            tag=form.cleaned_data.get('tag'),
+            
+        )
+        book.Category.set(form.cleaned_data.get('Category'))
+        
         return redirect('index') 
        
 
@@ -43,7 +57,7 @@ def createIsbn(request):
     form = ISBNForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('index') 
+        return redirect('create') 
 
     return render (request , "Books/CreateISBN.html" , {
       "form":form

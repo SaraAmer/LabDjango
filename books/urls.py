@@ -7,6 +7,6 @@ urlpatterns = [
     path('delete/<int:id>/' , views.destroy , name='delete'),
     path('create' , views.create , name='create'),
     path('edit/<int:id>/' , views.edit , name='edit'),
-     path('createISBN' , views.createIsbn , name='createISBN'),
+    # path('createISBN' , views.createIsbn , name='createISBN'),
 
 ]

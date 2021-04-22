@@ -6,6 +6,7 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = "__all__"
+        exclude=("isbn_number",)
         
     def clean_title(self):
         title = self.cleaned_data.get('title')
@@ -24,10 +25,11 @@ class CategoryForm (forms.ModelForm):
     class Meta:
         model = Category
         fields = "__all__"
+       
         
     def clean_category(self):
         category = self.cleaned_data.get('name')
-      
+        print(self.cleaned_data.get('name'))
         if len(category) < 2 :
             raise ValidationError('the category Must be more than two characters')
         return category  
