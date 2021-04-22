@@ -1,0 +1,45 @@
+{%extends "layout/layout.html" %}
+{%block title%} All Posts {%endblock%}
+{%block content%}
+<a class="btn btn-success" href="/books/create">
+Create New Book
+</a>
+<a href="/admin" style="position: absolute; right: 100px;">
+    admin
+</a>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Author</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for book in books %} 
+      <tr>
+        <th scope="row">{{book.id}}</th>
+        <td>{{book.title}}</td>
+        <td>{{book.Description}}</td>
+        <td>{{book.Author}}</td>
+        <td>
+            <a class="btn btn-info" style="color: aliceblue;" href="/books/show/{{book.id}}">
+               View
+            </a>
+                <a class="btn btn-primary" href="{% url 'edit' book.id %}">
+                    Edit
+                </a>
+                     <a class="btn btn-danger" href="/books/delete/{{book.id}}">
+                        Delete
+                     </a>
+        </td>
+      </tr>
+   {%endfor%}
+    </tbody>
+  </table>
+  
+  
+  </table>
+  {%endblock%}
