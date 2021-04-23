@@ -1,10 +1,12 @@
 from django.contrib import admin
 from .models import Book , Tag, ISBN ,Category 
 from .forms import BookForm , CategoryForm
+from .views import create
 # Register your models here.
 
 
 class BookAdmin(admin.ModelAdmin):
+    actions=[create]
     form = BookForm
     list_display = ("title", "Author", "Description")
     list_filter = ("Category", )

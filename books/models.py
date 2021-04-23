@@ -20,7 +20,7 @@ class Category(models.Model):
    
 
 class ISBN(models.Model):
-    isbn_number=models.UUIDField(primary_key=True ,default=uuid.uuid4, editable=False)
+    isbn_number=models.UUIDField(default=uuid.uuid4, editable=False)
     Author_name=models.CharField(max_length=50)
     # # Book_title=models.CharField(max_length=50)
     # created_at = models.DateTimeField(auto_now_add=True)
