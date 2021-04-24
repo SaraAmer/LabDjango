@@ -4,6 +4,7 @@ from .forms import BookForm , ISBNForm
 from django.contrib.auth.decorators import login_required ,permission_required
 
 # Create your views here.
+@login_required()   
 @permission_required(['books.view_book'], raise_exception=True)
 def index(request):
     books = Book.objects.all()
@@ -25,8 +26,8 @@ def destroy(request , id):
 def create(request):
     form = BookForm(request.POST or None)
     if form.is_valid():
-        author=form.cleaned_data.get('Author')
-        isbn_create=ISBN(Author_name=author)
+        # author=form.cleaned_data.get('Author')
+        # isbn_create=ISBN(Author_name=author)
         isbn_create.save()
         book = Book.objects.create(
             title=form.cleaned_data.get('title'),
@@ -34,7 +35,7 @@ def create(request):
             price=form.cleaned_data.get('price'),
             Publishment_date=form.cleaned_data.get('Publishment_date'),
             Author=form.cleaned_data.get('Author'),
-            isbn_number=isbn_create,
+           
             tag=form.cleaned_data.get('tag'),
             
         )
